@@ -1,0 +1,74 @@
+@use 'variables';
+
+/* -------------------------------------------
+
+datepicker
+
+------------------------------------------- */
+body {
+    .react-datepicker {
+        font-family: variables.$font-2;
+        font-size: variables.$text;
+        background-color: variables.$light;
+        box-shadow: 0px 4px 20px rgba(variables.$dark, .07);
+
+        .react-datepicker__header {
+            padding: 16px 0;
+            background: none;
+            border: none;
+        }
+        .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+            font-size: variables.$text;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0px;
+        }
+        .react-datepicker__day-name {
+            font-weight: 400;
+        }
+        .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+            width: 2.2rem;
+            line-height: 2.2rem;
+            margin: 0.2rem;
+        }
+
+        /* Change background color when selecting. */
+        .react-datepicker__day--keyboard-selected:not(.react-datepicker__day--range-start) {
+            background-color: variables.$accent-2;
+        }
+        .react-datepicker__day:hover {
+            background-color: variables.$soft-1;
+            color: variables.$dark;
+        }
+        .react-datepicker__day--in-range {
+            background-color: variables.$soft-1;
+            color: variables.$dark;
+        }
+        .react-datepicker__day--range-start,
+        .react-datepicker__day--range-end {
+            background-color: variables.$soft-1;
+            color: variables.$accent-1;
+        }
+        .react-datepicker__day--in-selecting-range {
+            background-color: variables.$soft-1;
+            color: variables.$dark;
+        }
+        .react-datepicker__day--disabled {
+            color: #ccc !important;
+            background-color: transparent !important;
+        }
+        .react-datepicker__day--outside-month {
+            color: #888;
+        }
+    }
+    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
+        fill: variables.$light;
+    }
+}
+
+.form-status {
+    margin: 20px 0 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+}
