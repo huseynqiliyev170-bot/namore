@@ -113,22 +113,29 @@ top panel
     left: 20px;
     z-index: 98;
     width: calc(100% - 40px);
-    border-radius: 20px;
-    background-color: variables.$light;
-    box-shadow: 0px 4px 20px rgba(variables.$dark, .05);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 10px 35px rgba(variables.$dark, .08),
+        inset 0 1px 0 rgba(255, 255, 255, .55);
     transition: variables.$t-md;
 
     & .mil-top-panel-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 90px;
+        gap: 24px;
+        min-height: 90px;
         transition: variables.$t-md;
 
         & .mil-logo {
             margin: 0;
             padding: 0;
             width: 200px;
+            min-width: 200px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -136,11 +143,13 @@ top panel
 
             & img {
                 width: 100%;
+                display: block;
             }
         }
 
         & .mil-top-panel-btn {
             transition: variables.$t-md;
+            flex-shrink: 0;
 
             & svg {
                 transition: variables.$t-md;
@@ -155,27 +164,29 @@ top panel
 
     @media screen and (max-width: 992px) {
         left: 0;
+        top: 0;
         width: 100%;
+        border-radius: 0 0 24px 24px;
 
         & .mil-top-panel-content {
-            height: 90px;
+            min-height: 90px;
         }
     }
 
     &.mil-active {
         top: 0;
-        border-radius: 0 0 20px 20px;
+        border-radius: 0 0 24px 24px;
 
         & .mil-top-panel-content {
-            height: 90px;
+            min-height: 90px;
 
             & .mil-logo {
                 width: 200px;
             }
 
             & .mil-top-panel-btn {
-                width: 50px;
-                height: 50px;
+                width: 52px;
+                height: 52px;
                 padding: 0;
                 display: flex;
                 align-items: center;
@@ -195,16 +206,56 @@ top panel
     }
 }
 
+.mil-mobile-menu {
+    flex: 1;
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+    transition: variables.$t-md;
+
+    @media screen and (max-width: 1400px) {
+        gap: 14px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        padding: 24px 20px;
+        border-radius: 22px;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0px 12px 40px rgba(variables.$dark, .10);
+        top: 96px;
+        left: 10px;
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 20px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(30px) scale(.97);
+        gap: 0;
+
+        &.mil-active {
+            pointer-events: all;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+}
+
 .mil-menu {
-    margin-left: 25px;
+    margin-left: 20px;
 
     & ul {
         display: flex;
+        align-items: center;
 
         & li {
             position: relative;
             list-style-type: none;
-            margin-right: 50px;
+            margin-right: 42px;
             display: flex;
             align-items: center;
             height: 90px;
@@ -213,19 +264,20 @@ top panel
                 margin-right: 0;
             }
 
-            & a {
+            & > a {
                 white-space: nowrap;
                 text-decoration: none;
                 text-transform: uppercase;
                 font-size: variables.$link;
                 letter-spacing: 2px;
-                font-weight: 500;
-                color: variables.$dark;
+                font-weight: 600;
+                color: #355666;
+                transition: variables.$t-md;
             }
 
             &.mil-current {
                 &:before {
-                    content: ' ';
+                    content: "";
                     display: inline-block;
                     width: 7px;
                     height: 7px;
@@ -233,119 +285,76 @@ top panel
                     background-color: variables.$accent-2;
                     margin-right: 8px;
                 }
+
+                & > a {
+                    color: #284b5c;
+                }
+            }
+
+            &.menu-item-has-children {
+                & > a {
+                    position: relative;
+                    padding-right: 14px;
+                }
+
+                & > a::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    width: 6px;
+                    height: 6px;
+                    border-right: 1.5px solid #7f9aa5;
+                    border-bottom: 1.5px solid #7f9aa5;
+                    transform: translateY(-65%) rotate(45deg);
+                }
             }
 
             & ul {
                 position: absolute;
-                top: 95px;
-                left: -40px;
-                padding: 40px;
-                background-color: variables.$light;
+                top: 94px;
+                left: -28px;
+                min-width: 240px;
+                padding: 18px;
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
                 display: flex;
                 flex-direction: column;
-                border-radius: 5px;
-                box-shadow: 0px 4px 20px rgba(variables.$dark, .05);
-                transform: translateY(40px) scale(.8);
+                border-radius: 20px;
+                border: 1px solid rgba(92, 139, 158, 0.10);
+                box-shadow: 0px 16px 40px rgba(variables.$dark, .10);
+                transform: translateY(20px) scale(.98);
                 opacity: 0;
                 pointer-events: none;
                 transition: variables.$t-sm;
 
                 &:before {
-                    content: '';
-                    background-color: variables.$light;
+                    content: "";
+                    background: rgba(255, 255, 255, 0.97);
                     width: 12px;
                     height: 12px;
                     position: absolute;
-                    top: -7px;
+                    top: -6px;
+                    left: 34px;
                     transform: rotate(-45deg);
-                    border-top: solid 1px variables.$soft-2;
-                    border-right: solid 1px variables.$soft-2;
+                    border-top: solid 1px rgba(92, 139, 158, 0.10);
+                    border-right: solid 1px rgba(92, 139, 158, 0.10);
                 }
 
                 &:after {
-                    content: '';
+                    content: "";
                     width: 100%;
-                    height: 20px;
+                    height: 18px;
                     position: absolute;
-                    top: -10px;
+                    top: -12px;
                     left: 0;
                 }
 
                 & li {
                     height: auto;
-                    margin-bottom: 20px;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-
-            &:hover {
-                & ul {
-                    transform: translateY(0) scale(1);
-                    opacity: 1;
-                    pointer-events: all;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 1200px) {
-        margin-left: 0;
-    }
-}
-
-
-.mil-mobile-menu {
-    width: 72%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: variables.$t-md;
-
-    @media screen and (max-width: 1400px) {
-        width: 75%;
-    }
-
-    @media screen and (max-width: 1200px) {
-        padding: 40px 20px;
-        border-radius: 20px;
-        position: absolute;
-        background-color: variables.$light;
-        box-shadow: 0px 4px 20px rgba(variables.$dark, .05);
-        top: 95px;
-        left: 10px;
-        display: flex;
-        flex-direction: column;
-        width: calc(100% - 20px);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(40px) scale(.8);
-
-        &.mil-active {
-            pointer-events: all;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        & .mil-menu {
-            width: 100%;
-            margin-bottom: 40px;
-
-            & ul {
-                width: 100%;
-                flex-direction: column;
-
-
-                & li {
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    width: 100%;
+                    margin-bottom: 8px;
                     margin-right: 0;
-                    height: auto;
-                    margin-bottom: 20px;
 
                     &:last-child {
                         margin-bottom: 0;
@@ -357,41 +366,143 @@ top panel
                         }
 
                         & > a {
-                            color: variables.$accent-2;
+                            background: rgba(43, 179, 230, .10);
+                            color: #1f566d;
                         }
                     }
 
-                    & ul {
-                        position: static;
-                        overflow: hidden;
-                        max-height: 0;
-                        padding: 0;
-                        background-color: variables.$soft-3;
-                        transform: translateY(0) scale(1);
-                        box-shadow: none;
+                    & a {
+                        display: flex;
+                        align-items: center;
+                        min-height: 44px;
+                        padding: 10px 14px;
+                        border-radius: 12px;
+                        text-transform: none;
+                        letter-spacing: .3px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: #4e6975;
                         transition: variables.$t-md;
 
-                        &:before,
-                        &:after {
-                            display: none;
+                        &:hover {
+                            background: rgba(43, 179, 230, .10);
+                            color: #1f566d;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                & > a {
+                    color: #1f566d;
+                }
+
+                & ul {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+
+        & ul {
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+
+            & li {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                margin-right: 0;
+                height: auto;
+                margin-bottom: 10px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                & > a {
+                    width: 100%;
+                    min-height: 48px;
+                    display: flex;
+                    align-items: center;
+                    padding: 12px 14px;
+                    border-radius: 14px;
+                }
+
+                &.mil-current {
+                    &:before {
+                        display: none;
+                    }
+
+                    & > a {
+                        color: variables.$accent-2;
+                        background: rgba(43, 179, 230, .08);
+                    }
+                }
+
+                & ul {
+                    position: static;
+                    width: 100%;
+                    min-width: 100%;
+                    overflow: hidden;
+                    max-height: 0;
+                    padding: 0;
+                    margin-top: 0;
+                    background: rgba(244, 250, 252, .95);
+                    transform: translateY(0) scale(1);
+                    box-shadow: none;
+                    border: none;
+                    opacity: 1;
+                    pointer-events: all;
+                    transition: variables.$t-md;
+
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+
+                    & li {
+                        width: 100%;
+                        margin-bottom: 0;
+
+                        &:first-child {
+                            margin-top: 10px;
                         }
 
-                        & li {
-                            &:first-child {
-                                margin-top: 20px;
-                            }
+                        &:last-child {
+                            margin-bottom: 10px;
+                        }
 
-                            &:last-child {
-                                margin-bottom: 20px;
-                            }
+                        & a {
+                            min-height: 42px;
+                            padding: 10px 14px 10px 18px;
+                            font-size: 14px;
                         }
                     }
 
-                    &:hover {
-                        & ul {
-                            margin-top: 20px;
-                            max-height: 500px;
-                        }
+                    &.mil-active {
+                        margin-top: 8px;
+                        max-height: 500px;
+                        padding: 8px;
+                        border-radius: 16px;
+                    }
+                }
+
+                &:hover {
+                    & ul {
+                        max-height: 0;
+                        margin-top: 0;
+                        padding: 0;
                     }
                 }
             }
@@ -399,16 +510,69 @@ top panel
     }
 }
 
-/* -------------------------------------------
+.mil-top-panel-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+    margin-right: 2px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(245, 250, 252, 0.92);
+    border: 1px solid rgba(92, 139, 158, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
 
-menu button
+.mil-info-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: variables.$dark;
+    white-space: nowrap;
+    transition: variables.$t-md;
 
-------------------------------------------- */
+    & svg {
+        width: 16px;
+        height: 16px;
+        stroke: variables.$accent-1;
+        flex-shrink: 0;
+    }
+
+    & span {
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: .5px;
+        font-weight: 600;
+        color: #5b7682;
+    }
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+.mil-info-static {
+    cursor: default;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.mil-info-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(92, 139, 158, 0.18);
+}
 
 .mil-menu-btn {
     background-color: variables.$soft-3;
     padding: 25px 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     height: 24px;
     cursor: pointer;
     display: none;
@@ -418,6 +582,7 @@ menu button
 
     @media screen and (max-width: 1200px) {
         display: flex;
+        margin-left: auto;
     }
 
     & span,
@@ -463,6 +628,59 @@ menu button
             }
         }
     }
+}
+
+@media screen and (max-width: 1200px) {
+    .mil-top-panel-info {
+        width: 100%;
+        margin: 0 0 22px 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 18px;
+        padding: 14px 16px;
+    }
+
+    .mil-info-link span {
+        font-size: 13px;
+    }
+
+    .mil-top-panel .mil-top-panel-content .mil-top-panel-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mil-top-panel {
+        & .mil-top-panel-content {
+            gap: 16px;
+
+            & .mil-logo {
+                width: 170px;
+                min-width: 170px;
+            }
+        }
+    }
+
+    .mil-top-panel-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .mil-info-divider {
+        display: none;
+    }
+}
+.mil-logo {
+    margin-right: 30px;
+}
+.mil-top-panel-info {
+    gap: 10px;
+    padding: 8px 12px;
+}
+.mil-info-link span {
+    font-size: 11px;
 }
 
 /* -------------------------------------------
@@ -693,61 +911,92 @@ banner images
 
 .mil-banner-img-2 {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                90deg,
+                rgba(230, 244, 248, 0.72) 0%,
+                rgba(230, 244, 248, 0.52) 35%,
+                rgba(230, 244, 248, 0.18) 60%,
+                rgba(230, 244, 248, 0.04) 100%
+            );
+        z-index: 2;
+    }
 
     & img:not(.mil-figure) {
-        margin-left: -10%;
-        width: 160% !important;
+        width: 100% !important;
         height: 100% !important;
-        object-fit: contain;
-        object-position: bottom left;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(0.9) saturate(0.92);
     }
 
     & .mil-figure {
         position: absolute;
-        z-index: 9;
-
-        &.mil-1 {
-            top: 22%;
-            right: 52%;
-            width: 50px;
-            height: 50px;
-        }
-
-        &.mil-2 {
-            top: 15%;
-            right: -5%;
-            width: 50px;
-            height: 50px;
-        }
-
-        &.mil-3 {
-            top: 85%;
-            left: 27%;
-            width: 50px;
-            height: 50px;
-        }
+        z-index: 3;
     }
+}
 
-    @media screen and (max-width: 1200px) {
-        display: none;
-    }
+.mil-banner-content-frame,
+.mil-banner-content {
+    position: relative;
+    z-index: 5;
+}
+.mil-banner-content h1 {
+    color: #23495a;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.22);
+}
+.mil-suptitle {
+    position: relative;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    border-radius: 999px;
+    display: inline-block;
+    padding: 10px 18px;
+    color: #3d6675;
+}
+.mil-banner-content p {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6px);
+    color: #496673;
+}
+.mil-banner {
+  position: relative;
+  overflow: hidden;
+}
 
-    @media screen and (min-width: 1200px) {
+.mil-banner-img-2 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
 
-        @media screen and (min-height: 992px) {
-            height: 900px;
-        }
+  img {
+    object-fit: cover;
+  }
+}
 
-        @media screen and (max-height: 768px) {
-
-            height: 900px;
-
-        }
-    }
+.mil-banner-content-frame {
+  position: relative;
+  z-index: 2;
+}
+.mil-banner-content {
+  position: relative;
+  z-index: 2;
 }
 
 .mil-banner-img-3 {
@@ -861,21 +1110,27 @@ search
 ------------------------------------------- */
 .mil-search-panel {
     width: 100%;
-    padding: 8px 8px;
-    background-color: variables.$light;
-    box-shadow: 0px 4px 20px rgba(variables.$dark, .05);
-    border-radius: 10px 90px 90px 10px;
+    padding: 10px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 12px 40px rgba(16, 43, 56, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
     & form {
         width: 100%;
         display: flex;
+        align-items: stretch;
         justify-content: space-between;
-        align-items: center;
+        gap: 10px;
 
         & .mil-form-grid {
             display: flex;
-            justify-content: space-between;
-            width: calc(100% - 90px);
+            width: calc(100% - 92px);
+            gap: 10px;
 
             & .mil-col-5 {
                 width: 40%;
@@ -887,35 +1142,97 @@ search
         }
 
         & .mil-field-frame {
-            margin-right: 8px;
+            position: relative;
+            min-height: 88px;
+            padding: 16px 18px 12px;
+            margin-right: 0;
+            border-radius: 20px;
+            background: rgba(245, 251, 253, 0.88);
+            border: 1px solid rgba(88, 138, 161, 0.14);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+            transition: 0.25s ease;
 
-            &:last-child {
-                margin-right: 0;
+            &:hover {
+                background: rgba(248, 252, 254, 0.96);
+                border-color: rgba(88, 138, 161, 0.22);
+            }
+
+            &:focus-within,
+            &.focused {
+                background: rgba(255, 255, 255, 0.98);
+                border-color: rgba(43, 179, 230, 0.45);
+                box-shadow:
+                    0 0 0 4px rgba(43, 179, 230, 0.10),
+                    inset 0 1px 0 rgba(255,255,255,0.65);
+            }
+
+            & label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 12px;
+                line-height: 1;
+                font-weight: 700;
+                letter-spacing: 1.4px;
+                text-transform: uppercase;
+                color: #5d7b88;
+            }
+
+            & input,
+            & .react-datepicker-wrapper,
+            & .react-datepicker__input-container {
+                width: 100%;
+            }
+
+            & input {
+                width: 100%;
+                height: 28px;
+                padding: 0 38px 0 0;
+                border: none;
+                outline: none;
+                background: transparent;
+                font-size: 18px;
+                font-weight: 500;
+                color: #244a5b;
+            }
+
+            & input::placeholder {
+                color: #8aa4af;
+            }
+
+            & svg {
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                transform: translateY(2px);
+                width: 18px;
+                height: 18px;
+                stroke: #42b7e7;
+                pointer-events: none;
+                opacity: 0.95;
             }
         }
 
         & button[type='submit'] {
-            cursor: pointer;
+            flex: 0 0 82px;
+            width: 82px;
+            height: 82px;
             border: none;
-            border-radius: 50%;
+            border-radius: 26px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            width: 80px;
-            height: 80px;
-            background-color: variables.$accent-1;
-            font-size: variables.$link;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            border-radius: 60px;
+            justify-content: center;
+            cursor: pointer;
+            background: linear-gradient(135deg, #2ec2f0 0%, #20aee3 100%);
             color: variables.$light;
-            white-space: nowrap;
-            transition: variables.$t-md;
+            box-shadow:
+                0 14px 30px rgba(32, 174, 227, 0.28),
+                inset 0 1px 0 rgba(255,255,255,0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 
             & svg {
+                width: 22px;
+                height: 22px;
                 stroke: variables.$light;
-                width: 20px;
             }
 
             & span {
@@ -923,7 +1240,15 @@ search
             }
 
             &:hover {
-                filter: brightness(110%);
+                transform: translateY(-2px);
+                filter: brightness(1.03);
+                box-shadow:
+                    0 18px 36px rgba(32, 174, 227, 0.34),
+                    inset 0 1px 0 rgba(255,255,255,0.25);
+            }
+
+            &:active {
+                transform: translateY(0);
             }
         }
     }
@@ -931,52 +1256,255 @@ search
     &.mil-panel-2 {
         padding: 0;
         box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
     }
 
     @media screen and (max-width: 992px) {
-        width: 100%;
-        border-radius: 20px;
-        padding: 20px;
+        padding: 16px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.78);
 
         & form {
             flex-direction: column;
+            gap: 14px;
 
             & .mil-form-grid {
                 width: 100%;
                 flex-direction: column;
+                gap: 14px;
 
-                & .mil-col-5 {
-                    width: 100%;
-                }
-
+                & .mil-col-5,
                 & .mil-col-2 {
                     width: 100%;
                 }
             }
 
             & .mil-field-frame {
-                padding: 0;
-                margin-bottom: 20px;
-            }
+                min-height: 78px;
+                padding: 14px 16px 10px;
+                border-radius: 18px;
 
-            & button {
-                width: 100%;
-                height: auto;
-                padding: 18px 55px;
-                border-radius: 60px;
+                & label {
+                    font-size: 11px;
+                    letter-spacing: 1.2px;
+                }
+
+                & input {
+                    font-size: 17px;
+                    padding-right: 36px;
+                }
 
                 & svg {
-                    margin-right: 10px;
+                    right: 14px;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+
+            & button[type='submit'] {
+                width: 100%;
+                min-height: 58px;
+                height: 58px;
+                flex: unset;
+                border-radius: 18px;
+                padding: 0 20px;
+                gap: 10px;
+                justify-content: center;
+
+                & svg {
+                    width: 20px;
+                    height: 20px;
                 }
 
                 & span {
-                    display: flex;
+                    display: inline-flex;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 700;
+                    letter-spacing: 1.3px;
+                    text-transform: uppercase;
                 }
             }
         }
     }
+
+    @media screen and (max-width: 576px) {
+        padding: 14px;
+        border-radius: 20px;
+
+        & form {
+            gap: 12px;
+
+            & .mil-form-grid {
+                gap: 12px;
+            }
+
+            & .mil-field-frame {
+                min-height: 74px;
+                padding: 12px 14px 10px;
+                border-radius: 16px;
+
+                & input {
+                    font-size: 16px;
+                }
+            }
+
+            & button[type='submit'] {
+                min-height: 54px;
+                height: 54px;
+                border-radius: 16px;
+            }
+        }
+    }
+}
+.mil-field-frame-end.focused {
+    border-color: rgba(255, 166, 0, 0.55) !important;
+    box-shadow: 0 0 0 4px rgba(255, 166, 0, 0.10) !important;
+}
+.react-datepicker {
+    border: none !important;
+    border-radius: 22px !important;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+        0 20px 50px rgba(18, 52, 66, 0.16),
+        0 4px 18px rgba(18, 52, 66, 0.08) !important;
+    font-family: inherit !important;
+    padding: 10px 10px 14px;
 }
 
+.react-datepicker-popper {
+    z-index: 30 !important;
+}
+
+.react-datepicker__triangle {
+    display: none !important;
+}
+
+.react-datepicker__header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding-top: 8px !important;
+    padding-bottom: 10px !important;
+}
+
+.react-datepicker__current-month {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #204a5c !important;
+    margin-bottom: 14px !important;
+}
+
+.react-datepicker__navigation {
+    top: 18px !important;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: #6da9be !important;
+    border-width: 2px 2px 0 0 !important;
+    height: 9px !important;
+    width: 9px !important;
+}
+
+.react-datepicker__day-names {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 8px !important;
+}
+
+.react-datepicker__day-name {
+    width: 40px !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #6b8a96 !important;
+}
+
+.react-datepicker__month {
+    margin: 0 !important;
+}
+
+.react-datepicker__week {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.react-datepicker__day {
+    width: 40px !important;
+    line-height: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #244a5b !important;
+    transition: all 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+    background: rgba(43, 179, 230, 0.14) !important;
+    color: #1f566d !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+    background: rgba(43, 179, 230, 0.18) !important;
+    color: #1f566d !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+    background: #bfeaf3 !important;
+    color: #1f566d !important;
+}
+
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+    background: #2bb3e6 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+.react-datepicker__day--today {
+    position: relative;
+    font-weight: 700 !important;
+    color: #1f566d !important;
+}
+
+.react-datepicker__day--today::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2bb3e6;
+}
+
+.react-datepicker__day--outside-month {
+    color: #a8bcc5 !important;
+}
+
+.react-datepicker__day--disabled {
+    color: #c7d5db !important;
+    background: transparent !important;
+    cursor: not-allowed !important;
+}
+
+.react-datepicker__day--disabled:hover {
+    background: transparent !important;
+    color: #c7d5db !important;
+}
 .mil-field-frame {
     position: relative;
     display: flex;
@@ -1045,7 +1573,7 @@ search
         }
     }
 
-    & > svg {
+    &>svg {
         pointer-events: none;
         position: absolute;
         top: 45px;
@@ -1218,7 +1746,8 @@ features
         justify-content: center;
         align-items: center;
 
-        & svg, & img {
+        & svg,
+        & img {
             width: 30px;
             height: 30px;
             color: variables.$accent-1;
@@ -1522,7 +2051,8 @@ rooms
             margin-right: 10px;
             background-color: variables.$soft-2;
 
-            & svg, & img {
+            & svg,
+            & img {
                 width: 16px;
                 height: 16px;
             }
@@ -2778,7 +3308,8 @@ footer {
             align-items: center;
             transition: variables.$t-md;
 
-            & svg, & img {
+            & svg,
+            & img {
                 width: 18px;
                 height: 18px;
                 transition: variables.$t-md;
