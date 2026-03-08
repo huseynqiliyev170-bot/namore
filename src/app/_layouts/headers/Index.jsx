@@ -13,7 +13,7 @@ const HeaderModule = ({ data }) => {
     const asPath = usePathname();
 
     const isPathActive = (path) => {
-        return (asPath.indexOf(path) !== -1) && asPath === path;
+        return asPath.indexOf(path) !== -1 && asPath === path;
     };
 
     const handleSubMenuClick = (index, e) => {
@@ -52,6 +52,23 @@ const HeaderModule = ({ data }) => {
                                     />
                                 )}
                             </Link>
+
+                            <a href="tel:+79787668130" className="mil-mobile-phone">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.2a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                <span>+7 (978) 766-81-30</span>
+                            </a>
 
                             <div
                                 className={`mil-menu-btn ${toggle ? "mil-active" : ""}`}
@@ -117,7 +134,10 @@ const HeaderModule = ({ data }) => {
                                 </nav>
 
                                 <div className="mil-top-panel-info">
-                                    <a href="tel:+79780000000" className="mil-info-link">
+                                    <a
+                                        href="tel:+79787668130"
+                                        className="mil-info-link mil-desktop-phone"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="18"
@@ -133,6 +153,7 @@ const HeaderModule = ({ data }) => {
                                         </svg>
                                         <span>+7 (978) 766-81-30</span>
                                     </a>
+                                    
 
                                     <div className="mil-info-divider"></div>
 

@@ -1,5 +1,5 @@
 import { Outfit } from 'next/font/google'
-
+import ContactFloatButton from "./_components/ContactFloatButton";
 const primary_font = Outfit({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   style: ['normal'],
@@ -23,13 +23,13 @@ import { getConfigSettings } from "@library/config-apis";
 
 export async function generateMetadata() {
   const configSettings = await getConfigSettings();
-  
+
   return {
-      title: {
-        default: configSettings.siteName,
-        template: "%s | " + configSettings.siteName,
-      },
-      description: configSettings.siteDescription,
+    title: {
+      default: configSettings.siteName,
+      template: "%s | " + configSettings.siteName,
+    },
+    description: configSettings.siteDescription,
   }
 }
 
@@ -42,6 +42,8 @@ const Layouts = ({
         {/* wrapper */}
         <div className="mil-wrapper">
           {children}
+          <ContactFloatButton />
+
         </div>
         {/* wrapper end */}
       </body>
