@@ -1,5 +1,8 @@
 import { Outfit } from 'next/font/google'
 import ContactFloatButton from "./_components/ContactFloatButton";
+
+export const dynamic = 'force-dynamic';
+
 const primary_font = Outfit({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   style: ['normal'],
@@ -16,7 +19,6 @@ import "@styles/css/plugins/swiper.min.css";
 import '@styles/scss/style.scss';
 
 import { register } from "swiper/element/bundle";
-// register Swiper custom elements
 register();
 
 import { getConfigSettings } from "@library/config-apis";
@@ -33,21 +35,17 @@ export async function generateMetadata() {
   }
 }
 
-const Layouts = ({
-  children
-}) => {
+const Layouts = ({ children }) => {
   return (
     <html lang="en" className={`${primary_font.variable}`}>
       <body>
-        {/* wrapper */}
         <div className="mil-wrapper">
           {children}
           <ContactFloatButton />
-
         </div>
-        {/* wrapper end */}
       </body>
     </html>
   );
 };
+
 export default Layouts;
