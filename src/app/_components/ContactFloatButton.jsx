@@ -1,13 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function ContactFloatButton() {
   const [open, setOpen] = useState(false);
 
   const whatsappUrl = "https://wa.me/79787668130";
   const telegramUrl = "https://t.me/+79787668130";
-  const maxUrl = "https://web.max.ru/61596249"; // <-- вставь сюда ссылку для MAX
+  const maxDesktopUrl = "https://web.max.ru/61596249";
+  const maxMobileUrl = "tel:+79787668130";
+
+  const isTouchDevice = useMemo(() => {
+    if (typeof navigator === "undefined") return false;
+
+    return /Android|iPhone|iPad|iPod|Tablet|Mobile/i.test(navigator.userAgent);
+  }, []);
+
+  const maxUrl = isTouchDevice ? maxMobileUrl : maxDesktopUrl;
+  const maxTarget = isTouchDevice ? undefined : "_blank";
+  const maxRel = isTouchDevice ? undefined : "noopener noreferrer";
+  const maxAriaLabel = isTouchDevice ? "Позвонить через MAX" : "Открыть MAX";
 
   return (
     <>
@@ -45,9 +57,9 @@ export default function ContactFloatButton() {
 
           <a
             href={maxUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Открыть MAX"
+            target={maxTarget}
+            rel={maxRel}
+            aria-label={maxAriaLabel}
             className="contact-float__item"
           >
             <span className="contact-float__label">MAX</span>
@@ -88,19 +100,7 @@ export default function ContactFloatButton() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 
-  19.79 19.79 0 0 1-8.63-3.07 
-  19.5 19.5 0 0 1-6-6 
-  19.79 19.79 0 0 1-3.07-8.63 
-  A2 2 0 0 1 4.11 2h3 
-  a2 2 0 0 1 2 1.72 
-  c.12.9.33 1.78.63 2.62 
-  a2 2 0 0 1-.45 2.11L8.09 9.91 
-  a16 16 0 0 0 6 6 
-  l1.46-1.46 
-  a2 2 0 0 1 2.11-.45 
-  c.84.3 1.72.51 2.62.63 
-  A2 2 0 0 1 22 16.92z"/>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.46a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92z" />
           </svg>
         </button>
       </div>
@@ -170,12 +170,6 @@ export default function ContactFloatButton() {
           flex-shrink: 0;
         }
 
-        .contact-float__icon-text {
-          font-size: 16px;
-          font-weight: 800;
-          line-height: 1;
-        }
-
         .contact-float__icon--wa {
           background: #25d366;
           box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
@@ -189,6 +183,13 @@ export default function ContactFloatButton() {
         .contact-float__icon--max {
           background: linear-gradient(135deg, #7c3aed, #4f46e5);
           box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+        }
+
+        .contact-float__icon-svg {
+          width: 20px;
+          height: 20px;
+          display: block;
+          color: #ffffff;
         }
 
         .contact-float__toggle {
