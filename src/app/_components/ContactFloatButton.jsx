@@ -3,64 +3,92 @@
 import { useState } from "react";
 
 export default function ContactFloatButton() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-    const whatsappUrl = "https://wa.me/79787668130";
-    const telegramUrl = "https://t.me/+79787668130";
+  const whatsappUrl = "https://wa.me/79787668130";
+  const telegramUrl = "https://t.me/+79787668130";
+  const maxUrl = "https://web.max.ru/61596249"; // <-- вставь сюда ссылку для MAX
 
-    return (
-        <>
-            <div className="contact-float">
-                <div className={`contact-float__menu ${open ? "is-open" : ""}`}>
-                    <a
-                        href={whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Написать в WhatsApp"
-                        className="contact-float__item"
-                    >
-                        <span className="contact-float__label">WhatsApp</span>
-                        <span className="contact-float__icon contact-float__icon--wa">
-                            <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor">
-                                <path d="M16 .4C7.2.4 0 7.6 0 16.4c0 2.8.7 5.5 2 7.9L.1 32l7.8-2A16 16 0 0016 32c8.8 0 16-7.2 16-16S24.8.4 16 .4zm0 29.2c-2.2 0-4.4-.6-6.3-1.7l-.5-.3-4.6 1.2 1.2-4.5-.3-.5A13.2 13.2 0 012.8 16c0-7.3 5.9-13.2 13.2-13.2S29.2 8.7 29.2 16 23.3 29.6 16 29.6zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.2-.3-.1-.6-.2-.8.2s-1 1.2-1.2 1.4c-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.8-1.1-1-1.8-2.2-2-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.6.1-.2.1-.4 0-.6s-.8-2-1.1-2.7c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.7c.2.2 2.6 4 6.4 5.6.9.4 1.6.6 2.2.8.9.3 1.7.2 2.3.2.7-.1 2.2-.9 2.5-1.7.3-.8.3-1.5.2-1.7-.1-.2-.3-.3-.7-.5z" />
-                            </svg>
-                        </span>
-                    </a>
+  return (
+    <>
+      <div className="contact-float">
+        <div className={`contact-float__menu ${open ? "is-open" : ""}`}>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в WhatsApp"
+            className="contact-float__item"
+          >
+            <span className="contact-float__label">WhatsApp</span>
+            <span className="contact-float__icon contact-float__icon--wa">
+              <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor">
+                <path d="M16 .4C7.2.4 0 7.6 0 16.4c0 2.8.7 5.5 2 7.9L.1 32l7.8-2A16 16 0 0016 32c8.8 0 16-7.2 16-16S24.8.4 16 .4zm0 29.2c-2.2 0-4.4-.6-6.3-1.7l-.5-.3-4.6 1.2 1.2-4.5-.3-.5A13.2 13.2 0 012.8 16c0-7.3 5.9-13.2 13.2-13.2S29.2 8.7 29.2 16 23.3 29.6 16 29.6zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.2-.3-.1-.6-.2-.8.2s-1 1.2-1.2 1.4c-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.8-1.1-1-1.8-2.2-2-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.6.1-.2.1-.4 0-.6s-.8-2-1.1-2.7c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.7c.2.2 2.6 4 6.4 5.6.9.4 1.6.6 2.2.8.9.3 1.7.2 2.3.2.7-.1 2.2-.9 2.5-1.7.3-.8.3-1.5.2-1.7-.1-.2-.3-.3-.7-.5z" />
+              </svg>
+            </span>
+          </a>
 
-                    <a
-                        href={telegramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Написать в Telegram"
-                        className="contact-float__item"
-                    >
-                        <span className="contact-float__label">Telegram</span>
-                        <span className="contact-float__icon contact-float__icon--tg">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path d="M9.04 15.47 8.9 19.4c.52 0 .75-.22 1.03-.49l1.98-1.89 4.1 3c.75.42 1.28.2 1.47-.7l2.66-12.5c.24-1.1-.4-1.53-1.13-1.26L3.3 11.6c-1.07.42-1.05 1.02-.18 1.29l4.02 1.25 9.34-5.9c.44-.27.84-.12.5.18l-7.94 7.05z" />
-                            </svg>
-                        </span>
-                    </a>
-                </div>
+          <a
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram"
+            className="contact-float__item"
+          >
+            <span className="contact-float__label">Telegram</span>
+            <span className="contact-float__icon contact-float__icon--tg">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M9.04 15.47 8.9 19.4c.52 0 .75-.22 1.03-.49l1.98-1.89 4.1 3c.75.42 1.28.2 1.47-.7l2.66-12.5c.24-1.1-.4-1.53-1.13-1.26L3.3 11.6c-1.07.42-1.05 1.02-.18 1.29l4.02 1.25 9.34-5.9c.44-.27.84-.12.5.18l-7.94 7.05z" />
+              </svg>
+            </span>
+          </a>
 
-                <button
-                    type="button"
-                    onClick={() => setOpen((prev) => !prev)}
-                    aria-label="Открыть контакты"
-                    className={`contact-float__toggle ${open ? "is-open" : ""}`}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 
+          <a
+            href={maxUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть MAX"
+            className="contact-float__item"
+          >
+            <span className="contact-float__label">MAX</span>
+
+            <span className="contact-float__icon contact-float__icon--max">
+              <svg
+                viewBox="0 0 42 42"
+                width="20"
+                height="20"
+                aria-hidden="true"
+                className="contact-float__icon-svg"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M21.47 41.88c-4.11 0-6.02-.6-9.34-3-2.1 2.7-8.75 4.81-9.04 1.2 0-2.71-.6-5-1.28-7.5C1 29.5.08 26.07.08 21.1.08 9.23 9.82.3 21.36.3c11.55 0 20.6 9.37 20.6 20.91a20.6 20.6 0 0 1-20.49 20.67Zm.17-31.32c-5.62-.29-10 3.6-10.97 9.7-.8 5.05.62 11.2 1.83 11.52.58.14 2.04-1.04 2.95-1.95a10.4 10.4 0 0 0 5.08 1.81 10.7 10.7 0 0 0 11.19-9.97 10.7 10.7 0 0 0-10.08-11.1Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Открыть контакты"
+          className={`contact-float__toggle ${open ? "is-open" : ""}`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 
   19.79 19.79 0 0 1-8.63-3.07 
   19.5 19.5 0 0 1-6-6 
   19.79 19.79 0 0 1-3.07-8.63 
@@ -73,11 +101,11 @@ export default function ContactFloatButton() {
   a2 2 0 0 1 2.11-.45 
   c.84.3 1.72.51 2.62.63 
   A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                </button>
-            </div>
+          </svg>
+        </button>
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .contact-float {
           position: fixed;
           right: 16px;
@@ -142,6 +170,12 @@ export default function ContactFloatButton() {
           flex-shrink: 0;
         }
 
+        .contact-float__icon-text {
+          font-size: 16px;
+          font-weight: 800;
+          line-height: 1;
+        }
+
         .contact-float__icon--wa {
           background: #25d366;
           box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
@@ -150,6 +184,11 @@ export default function ContactFloatButton() {
         .contact-float__icon--tg {
           background: #229ed9;
           box-shadow: 0 8px 20px rgba(34, 158, 217, 0.35);
+        }
+
+        .contact-float__icon--max {
+          background: linear-gradient(135deg, #7c3aed, #4f46e5);
+          box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
         }
 
         .contact-float__toggle {
@@ -172,12 +211,12 @@ export default function ContactFloatButton() {
           box-shadow: 0 14px 40px rgba(20, 184, 166, 0.45);
         }
 
-      @media (max-width: 768px) {
-  .contact-float {
-    right: 12px;
-    bottom: 20px;
-    gap: 8px;
-  }
+        @media (max-width: 768px) {
+          .contact-float {
+            right: 12px;
+            bottom: 20px;
+            gap: 8px;
+          }
 
           .contact-float__item {
             min-width: 148px;
@@ -226,6 +265,6 @@ export default function ContactFloatButton() {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 }
