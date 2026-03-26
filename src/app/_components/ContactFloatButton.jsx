@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 export default function ContactFloatButton() {
   const [open, setOpen] = useState(false);
@@ -10,16 +10,27 @@ export default function ContactFloatButton() {
   const maxDesktopUrl = "https://web.max.ru/61596249";
   const maxMobileUrl = "tel:+79787668130";
 
-  const isTouchDevice = useMemo(() => {
-    if (typeof navigator === "undefined") return false;
+  const handleMaxClick = (e) => {
+    e.preventDefault();
 
-    return /Android|iPhone|iPad|iPod|Tablet|Mobile/i.test(navigator.userAgent);
-  }, []);
+    if (typeof window === "undefined") return;
 
-  const maxUrl = isTouchDevice ? maxMobileUrl : maxDesktopUrl;
-  const maxTarget = isTouchDevice ? undefined : "_blank";
-  const maxRel = isTouchDevice ? undefined : "noopener noreferrer";
-  const maxAriaLabel = isTouchDevice ? "Позвонить через MAX" : "Открыть MAX";
+    const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
+
+    const isMobileOrTabletByUA =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(
+        ua
+      );
+
+    const isSmallScreen = window.innerWidth <= 1024;
+
+    if (isMobileOrTabletByUA || isSmallScreen) {
+      window.location.href = maxMobileUrl;
+      return;
+    }
+
+    window.open(maxDesktopUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <>
@@ -56,14 +67,12 @@ export default function ContactFloatButton() {
           </a>
 
           <a
-            href={maxUrl}
-            target={maxTarget}
-            rel={maxRel}
-            aria-label={maxAriaLabel}
+            href={maxDesktopUrl}
+            onClick={handleMaxClick}
+            aria-label="Открыть MAX"
             className="contact-float__item"
           >
             <span className="contact-float__label">MAX</span>
-
             <span className="contact-float__icon contact-float__icon--max">
               <svg
                 viewBox="0 0 42 42"
