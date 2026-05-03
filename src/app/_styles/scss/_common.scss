@@ -46,7 +46,7 @@ body {
 .mil-content-pad {
     position: relative;
     z-index: 2;
-    background-color: variables.$light;
+    background-color: #EEEEE9;
     border-radius: 20px;
     box-shadow: 0px 4px 20px rgba(variables.$dark, .05);
     margin-left: 40px;
@@ -257,10 +257,7 @@ blockquote {
 }
 
 
-.mil-divider {
-    height: 1px;
-    border: dashed 1px variables.$soft-2;
-}
+
 
 
 .mil-row-title {

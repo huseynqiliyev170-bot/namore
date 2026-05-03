@@ -1,3 +1,4 @@
+import React from "react";
 import HeroSection from "@components/sections/Hero";
 import ServicesSection from "@components/sections/Services";
 import FeaturesSection from "@components/sections/Features";
@@ -16,53 +17,102 @@ import ContactFormSection from "@components/sections/Contact";
 import ContactsInfoSection from "@components/sections/ContactsInfo";
 import ContactMapSection from "@components/sections/ContactMap";
 import TextSection from "@components/sections/Text";
-
+import PromotionSection from "@components/sections/PromotionSection";
 const PageBlocks = ({ blocks, collections }) => {
   const getComponent = (block, key) => {
     switch (block.collection) {
-      case 'block_hero':
-        return <HeroSection {...block.item} key={key} />
-      case 'block_hero2':
-        return <Hero2Section {...block.item} key={key} />
-      case 'block_hero3':
-        return <Hero3Section {...block.item} key={key} />
-      case 'block_services':
-        return <ServicesSection items={collections['services']} {...block.item} key={key} />
-      case 'block_features':
-        return <FeaturesSection {...block.item} key={key} />
-      case 'block_featured_rooms':
-        return <RoomsSection rooms={collections['featured_rooms']} {...block.item} key={key} />
-      case 'block_call_to_action':
-        return <CallToActionSection {...block.item} key={key} />
-      case 'block_about_us':
-        return <AboutUsSection {...block.item} key={key} />
-      case 'block_about_us2':
-        return <AboutUs2Section {...block.item} key={key} />
-      case 'block_testimonials':
-        return <TestimonialSlider {...block.item} key={key} />
-      case 'block_latest_posts':
-        return <LatestPostsSection posts={collections['latest_posts']} {...block.item} key={key} />
-      case 'block_intro':
-        return <PageIntro {...block.item} key={key} />
-      case 'block_counters':
-        return <CountersSection {...block.item} key={key} />
-      case 'block_about_us3':
-        return <AboutUs3Section {...block.item} key={key} />
-      case 'block_contact_form':
-        return <ContactFormSection {...block.item} key={key} />
-      case 'block_contacts_info':
-        return <ContactsInfoSection {...block.item} key={key} />
-      case 'block_contact_map':
-        return <ContactMapSection {...block.item} key={key} />
-      case 'block_text':
-        return <TextSection {...block.item} key={key} />
+      case "block_hero":
+        return <HeroSection {...block.item} key={key} />;
+
+      case "block_featured_rooms":
+        return (
+          <React.Fragment key={key}>
+            <RoomsSection
+              rooms={collections["featured_rooms"]}
+              {...block.item}
+            />
+            <PromotionSection />
+          </React.Fragment>
+        );
+      case "block_services":
+        return (
+          <ServicesSection
+            items={collections["services"]}
+            {...block.item}
+            key={key}
+          />
+        );
+
+      case "block_hero2":
+        return <Hero2Section {...block.item} key={key} />;
+
+      case "block_hero3":
+        return <Hero3Section {...block.item} key={key} />;
+
+      case "block_features":
+        return <FeaturesSection {...block.item} key={key} />;
+
+      case "block_call_to_action":
+        return <CallToActionSection {...block.item} key={key} />;
+
+      case "block_about_us":
+        return <AboutUsSection {...block.item} key={key} />;
+
+      case "block_about_us2":
+        return <AboutUs2Section {...block.item} key={key} />;
+
+      case "block_testimonials":
+        return <TestimonialSlider {...block.item} key={key} />;
+
+      case "block_latest_posts":
+        return (
+          <LatestPostsSection
+            posts={collections["latest_posts"]}
+            {...block.item}
+            key={key}
+          />
+        );
+
+      case "block_intro":
+        return <PageIntro {...block.item} key={key} />;
+
+      case "block_counters":
+        return <CountersSection {...block.item} key={key} />;
+
+      case "block_about_us3":
+        return <AboutUs3Section {...block.item} key={key} />;
+
+      case "block_contact_form":
+        return <ContactFormSection {...block.item} key={key} />;
+
+      case "block_contacts_info":
+        return <ContactsInfoSection {...block.item} key={key} />;
+
+      case "block_contact_map":
+        return <ContactMapSection {...block.item} key={key} />;
+
+      case "block_text":
+        return <TextSection {...block.item} key={key} />;
+
+      default:
+        return null;
     }
-  }
+  };
 
   return (
-    <>
-        { blocks.map((block, key) => getComponent(block, key)) }
-    </>
+    <main className="besmile-canvas-bg">
+      <div className="besmile-canvas-bg__stripes" />
+      <div className="besmile-canvas-bg__beam besmile-canvas-bg__beam--one" />
+      <div className="besmile-canvas-bg__beam besmile-canvas-bg__beam--two" />
+      <div className="besmile-canvas-bg__glow besmile-canvas-bg__glow--sand" />
+      <div className="besmile-canvas-bg__glow besmile-canvas-bg__glow--sea" />
+      <div className="besmile-canvas-bg__light" />
+
+      <div className="besmile-canvas-bg__content">
+        {blocks.map((block, key) => getComponent(block, key))}
+      </div>
+    </main>
   );
 };
+
 export default PageBlocks;

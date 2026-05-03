@@ -27,9 +27,11 @@ async function Home1() {
   if ( pageData.blocks.some(e => e.collection == 'block_services') ) {
     pageCollections['services'] = await getAllServices();
   }
-  if ( pageData.blocks.some(e => e.collection == 'block_services') ) {
-    pageCollections['featured_rooms'] = await getFeaturedRoomTypes(configSettings.roomsFeaturedSectionLimit);
-  }
+if (pageData.blocks.some((e) => e.collection == "block_featured_rooms")) {
+  pageCollections["featured_rooms"] = await getFeaturedRoomTypes(
+    configSettings.roomsFeaturedSectionLimit
+  );
+}
   if ( pageData.blocks.some(e => e.collection == 'block_latest_posts') ) {
     pageCollections['latest_posts'] = await getPosts(1, configSettings.postsLatestSectionLimit);
   }

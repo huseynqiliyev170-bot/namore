@@ -6,7 +6,6 @@ const LatestPostsSection = ( { subtitle, title, posts, text, button_label, butto
         <>
             {/* blog */}
             <div className="mil-rooms mil-p-100-100">
-                <img src="/img/shapes/4.png" className="mil-shape" style={{"width": "85%", "top": "-20%", "right": "-30%", "transform": "rotate(-30deg) scaleX(-1)"}} alt="shape" />
                 
                 <div className="container">
                     <div className="mil-text-center">

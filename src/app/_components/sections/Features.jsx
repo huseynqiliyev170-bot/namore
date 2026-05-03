@@ -1,41 +1,58 @@
 import { getDirectusImageURL } from "@library/directus-image";
 
-const FeaturesSection = ( { subtitle, title, items } ) => {
-    return (
-        <>
-            {/* features */}
-            <div className="mil-features mil-p-100-60">
-                <img src="/img/shapes/4.png" className="mil-shape mil-fade-up" style={{"width": "85%", "top": "-20%", "left": "-30%", "transform": "rotate(35deg)"}} alt="shape" />
-                
-                <div className="container">
-                    <div className="mil-text-center">
-                        {subtitle &&
-                        <div className="mil-suptitle mil-mb-20 mil-fade-up">{subtitle}</div>
-                        }
-                        {title &&
-                        <h2 className="mil-mb-100 mil-fade-up" dangerouslySetInnerHTML={{__html : title}} />
-                        }
-                    </div>
-                    {items &&
-                    <div className="row">
-                        {items.map((item, key) => (
-                        <div className="col-md-6 col-xl-4" key={`features-item-${key}`}>
-                            <div className="mil-iconbox mil-mb-40-adapt mil-fade-up">
-                                <div className="mil-bg-icon"></div>
-                                <div className="mil-icon">
-                                    <img src={getDirectusImageURL(item.icon)} alt={item.title} />
-                                </div>
-                                <h3 className="mil-mb-20">{item.title}</h3>
-                                <p dangerouslySetInnerHTML={{__html : item.text}} />
-                            </div>
-                        </div>
-                        ))}
-                    </div>
-                    }
-                </div>
+const FeaturesSection = ({ subtitle, title, items }) => {
+  return (
+    <section className="besmile-features-lux">
+      <div className="besmile-features-lux__ambient besmile-features-lux__ambient--one" />
+      <div className="besmile-features-lux__ambient besmile-features-lux__ambient--two" />
+      <div className="besmile-features-lux__lines" />
+
+      <div className="container">
+        <div className="besmile-features-lux__head">
+          {subtitle && (
+            <div className="besmile-features-lux__eyebrow mil-fade-up">
+              <span />
+              {subtitle}
+              <span />
             </div>
-            {/* features end */}
-        </>
-    );
+          )}
+
+          {title && (
+            <h2
+              className="besmile-features-lux__title mil-fade-up"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+          )}
+        </div>
+
+        {items && (
+          <div className="besmile-features-lux__grid">
+            {items.map((item, key) => (
+              <div
+                className="besmile-feature-card mil-fade-up"
+                key={`features-item-${key}`}
+              >
+                <div className="besmile-feature-card__top">
+                  <div className="besmile-feature-card__number">
+                    {String(key + 1).padStart(2, "0")}
+                  </div>
+
+                  <div className="besmile-feature-card__icon">
+                    <img src={getDirectusImageURL(item.icon)} alt={item.title} />
+                  </div>
+                </div>
+
+                <div className="besmile-feature-card__body">
+                  <h3>{item.title}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: item.text }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
 };
+
 export default FeaturesSection;

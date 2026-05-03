@@ -1,18 +1,19 @@
 import BookingSearchForm from "@components/forms/BookingSearchForm";
 
-const RoomsSearch = ( { checkInDate, checkOutDate, capacity } ) => {
-    return (
-        <>
-            {/* search panel */}
-            <div className="mil-content-pad mil-search-window">
-                <div className="container">
-                    <div className="mil-search-panel mil-panel-2">
-                        <BookingSearchForm checkInDate={checkInDate} checkOutDate={checkOutDate} capacity={capacity} />
-                    </div>
-                </div>
-            </div>
-            {/* search panel end */}
-        </>
-    )
+const RoomsSearch = ({ checkInDate, checkOutDate, capacity }) => {
+  return (
+    <section className="besmile-rooms-search">
+      <div className="container">
+        <div className="besmile-rooms-search__panel">
+          <BookingSearchForm
+            checkInDate={checkInDate}
+            checkOutDate={checkOutDate}
+            capacity={capacity}
+          />
+        </div>
+      </div>
+    </section>
+  );
 };
+
 export default RoomsSearch;

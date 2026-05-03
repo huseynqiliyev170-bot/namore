@@ -1,55 +1,94 @@
 import Link from "next/link";
-import Image from 'next/image';
 import { getDirectusImageURL } from "@library/directus-image";
 
-const ServicesSection = ( { subtitle, title, button_link, button_label, services_count, text, items } ) => {
-    return (
-        <>
-            {/* services */}
-            <div className="mil-content-pad mil-p-100-100">
-                <div className="container">
-                    <div className="mil-text-center">
-                        {subtitle &&
-                        <div className="mil-suptitle mil-mb-20 mil-fade-up">{subtitle}</div>
-                        }
-                        {title &&
-                        <h2 className="mil-mb-100 mil-fade-up" dangerouslySetInnerHTML={{__html : title}} />
-                        }
+const ServicesSection = ({
+  subtitle,
+  title,
+  button_link,
+  button_label,
+  services_count,
+  text,
+  items,
+}) => {
+  return (
+    <section className="besmile-services-lux">
+      <div className="besmile-services-lux__ambient besmile-services-lux__ambient--one" />
+      <div className="besmile-services-lux__ambient besmile-services-lux__ambient--two" />
+      <div className="besmile-services-lux__lines" />
+
+      <div className="container">
+        <div className="besmile-services-lux__box">
+          <div className="besmile-services-lux__head">
+            {subtitle && (
+              <div className="besmile-services-lux__eyebrow mil-fade-up">
+                <span />
+                {subtitle}
+                <span />
+              </div>
+            )}
+
+            {title && (
+              <h2
+                className="besmile-services-lux__title mil-fade-up"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+            )}
+          </div>
+
+          {items && (
+            <div className="besmile-services-lux__grid">
+              {items.slice(0, services_count).map((item, key) => (
+                <Link
+                  href={`/services/${item.slug}`}
+                  className={`besmile-service-card besmile-service-card--${key + 1} mil-fade-up`}
+                  key={`services-item-${key}`}
+                >
+                  <div className="besmile-service-card__media">
+                    <img src={getDirectusImageURL(item.image)} alt={item.name} />
+                    <div className="besmile-service-card__shade" />
+                  </div>
+
+                  <div className="besmile-service-card__content">
+                    <span className="besmile-service-card__number">
+                      {String(key + 1).padStart(2, "0")}
+                    </span>
+
+                    <h3>{item.name}</h3>
+
+                    <div className="besmile-service-card__more">
+                      Подробнее
+                      <i>→</i>
                     </div>
-                    {items &&
-                    <div className="row mil-mb-40">
-                        {items.slice(0, services_count).map((item, key) => (
-                        <div className="col-md-6 col-xl-3" key={`services-item-${key}`}>
-                            <Link href={`/services/${item.slug}`} className={(key+1)%2 ? "mil-service-card mil-mb-40-adapt mil-fade-up" : "mil-service-card mil-offset mil-mb-40-adapt mil-fade-up"}>
-                                <div className="mil-img-frame">
-                                    <img src={getDirectusImageURL(item.image)} alt={item.name} />
-                                </div>
-                                <div className="mil-description">{item.name}</div>
-                            </Link>
-                        </div>
-                        ))}
-                    </div>
-                    }
-                    <div className="row justify-content-between">
-                        <div className="col-lg-7">
-                            {text &&
-                            <p className="mil-fade-up" dangerouslySetInnerHTML={{__html : text}} />
-                            }
-                        </div>
-                        <div className="col-lg-5">
-                            {button_label &&
-                            <div className="mil-desctop-right mil-fade-up">
-                                <Link href={button_link} className="mil-button">
-                                    <span>{button_label}</span>
-                                </Link>
-                            </div>
-                            }
-                        </div>
-                    </div>
-                </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-            {/* services end */}
-        </>
-    );
+          )}
+
+          {(text || button_label) && (
+            <div className="besmile-services-lux__bottom">
+              {text && (
+                <div
+                  className="besmile-services-lux__text mil-fade-up"
+                  dangerouslySetInnerHTML={{ __html: text }}
+                />
+              )}
+
+              {button_label && (
+                <Link
+                  href={button_link}
+                  className="besmile-services-lux__button mil-fade-up"
+                >
+                  <span>{button_label}</span>
+                  <i>→</i>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 };
+
 export default ServicesSection;

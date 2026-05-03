@@ -56,8 +56,14 @@ const ContactForm = ({ success_text, error_text, info_text }) => {
           }
 
           resetForm({
-            values: { user_name: "", user_email: "", phone: "", message: "" },
+            values: {
+              user_name: "",
+              user_email: "",
+              phone: "",
+              message: "",
+            },
           });
+
           setSuccessNotice(true);
         } catch (err) {
           console.error("REQUEST FAILED:", err);
@@ -79,117 +85,108 @@ const ContactForm = ({ success_text, error_text, info_text }) => {
         <form
           onSubmit={handleSubmit}
           id="contactForm"
-          action={"/contact"}
-          className="mil-form"
+          action="/contact"
+          className="besmile-contact-form"
         >
-          <div className="row">
-            <div className="col-xl-6">
-              <div className="mil-field-frame mil-mb-20">
-                <label>{strings.name}</label>
-                <input
-                  type="text"
-                  placeholder={strings.enterYourName}
-                  name="user_name"
-                  id="user_name"
-                  className="mil-up"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.user_name}
-                />
-                {touched.user_name && errors.user_name && (
-                  <div className="mil-error">{errors.user_name}</div>
-                )}
-              </div>
+          <div className="besmile-contact-form__grid">
+            <div className="besmile-contact-form__field">
+              <label>{strings.name}</label>
+              <input
+                type="text"
+                placeholder={strings.enterYourName}
+                name="user_name"
+                id="user_name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.user_name}
+              />
+              {touched.user_name && errors.user_name && (
+                <div className="besmile-contact-form__error">
+                  {errors.user_name}
+                </div>
+              )}
             </div>
 
-            <div className="col-xl-6">
-              <div className="mil-field-frame mil-mb-20">
-                <label>{strings.email}</label>
-                <input
-                  type="email"
-                  id="user_email"
-                  className="mil-up"
-                  placeholder={strings.enterOurEmail}
-                  name="user_email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.user_email}
-                />
-                {touched.user_email && errors.user_email && (
-                  <div className="mil-error">{errors.user_email}</div>
-                )}
-              </div>
+            <div className="besmile-contact-form__field">
+              <label>{strings.email}</label>
+              <input
+                type="email"
+                id="user_email"
+                placeholder={strings.enterOurEmail}
+                name="user_email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.user_email}
+              />
+              {touched.user_email && errors.user_email && (
+                <div className="besmile-contact-form__error">
+                  {errors.user_email}
+                </div>
+              )}
             </div>
 
-            <div className="col-xl-6">
-              <div className="mil-field-frame mil-mb-20">
-                <label>{strings.phoneNumber || "Phone Number"}</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="mil-up"
-                  placeholder={
-                    strings.enterPhoneNumber || "Enter your phone number"
-                  }
-                  name="phone"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.phone}
-                />
-                {touched.phone && errors.phone && (
-                  <div className="mil-error">{errors.phone}</div>
-                )}
-              </div>
+            <div className="besmile-contact-form__field besmile-contact-form__field--wide">
+              <label>{strings.phoneNumber || "Phone Number"}</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder={strings.enterPhoneNumber || "Enter your phone number"}
+                name="phone"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.phone}
+              />
+              {touched.phone && errors.phone && (
+                <div className="besmile-contact-form__error">
+                  {errors.phone}
+                </div>
+              )}
             </div>
 
-            <div className="col-xl-12">
-              <div className="mil-field-frame mil-mb-20">
-                <label>{strings.message}</label>
-                <textarea
-                  placeholder={strings.yourMessage}
-                  name="message"
-                  id="message"
-                  className="mil-mb30 mil-up"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.message}
-                />
-                {touched.message && errors.message && (
-                  <div className="mil-error">{errors.message}</div>
-                )}
-              </div>
+            <div className="besmile-contact-form__field besmile-contact-form__field--full">
+              <label>{strings.message}</label>
+              <textarea
+                placeholder={strings.yourMessage}
+                name="message"
+                id="message"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.message}
+              />
+              {touched.message && errors.message && (
+                <div className="besmile-contact-form__error">
+                  {errors.message}
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <p className="mil-fade-up">
-                <span className="mil-accent-2">*</span>
+          <div className="besmile-contact-form__bottom">
+            {info_text && (
+              <p>
+                <span>*</span>
                 {info_text}
               </p>
-            </div>
+            )}
 
-            <div className="col-lg-5">
-              <div className="mil-desctop-right mil-fade-up">
-                <button
-                  type="submit"
-                  className="mil-button"
-                  disabled={isSubmitting}
-                >
-                  <span>{isSubmitting ? strings.loading : strings.send}</span>
-                </button>
-              </div>
-            </div>
+            <button
+              type="submit"
+              className="besmile-contact-form__submit"
+              disabled={isSubmitting}
+            >
+              <span>{isSubmitting ? strings.loading : strings.send}</span>
+              <i>→</i>
+            </button>
           </div>
 
           {successNotice && (
-            <div className="form-status alert-success mil-p-30-0">
+            <div className="besmile-contact-form__status besmile-contact-form__status--success">
               {success_text}
             </div>
           )}
 
           {errorNotice && (
-            <div className="form-status alert-error mil-p-30-0">
+            <div className="besmile-contact-form__status besmile-contact-form__status--error">
               {error_text}
             </div>
           )}
